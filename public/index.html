@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="featurePlayground">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS Feature Playground</title>
+  <!-- Include AngularJS from a CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <!-- Include AngularJS Route module for navigation -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <!-- Main App Script -->
+  <script src="app.js"></script>
+  <!-- Feature Modules -->
+  <script src="modules/bindingDemo.js"></script>
+  <script src="modules/routingDemo.js"></script>
+</head>
+<body>
+  <h1>AngularJS Feature Playground</h1>
+  <nav>
+    <a href="#!/">Home</a> |
+    <a href="#!/binding">Two-Way Binding Demo</a> |
+    <a href="#!/routing">Routing Demo</a>
+  </nav>
+  <!-- This is where our views will be injected -->
+  <div ng-view></div>
+</body>
+</html>
