@@ -10,9 +10,14 @@
   <!-- Main App Script -->
   <script src="app.js"></script>
   <!-- Feature Modules -->
-  <script src="modules/bindingDemo.js"></script>
-  <script src="modules/routingDemo.js"></script>
-  <script src="modules/directiveDemo.js"></script>
+<!-- Feature Modules: load these first -->
+<script src="modules/bindingDemo.js"></script>
+<script src="modules/routingDemo.js"></script>
+<script src="modules/directiveDemo.js"></script>
+<script src="modules/serviceDemo.js"></script>
+<!-- Then load the main app script -->
+<script src="app.js"></script>
+
 
 </head>
 <body>
@@ -21,8 +26,10 @@
     <a href="#!/">Home</a> |
     <a href="#!/binding">Two-Way Binding Demo</a> |
     <a href="#!/routing">Routing Demo</a> |
-    <a href="#!/directive">Directive Demo</a>
+    <a href="#!/directive">Directive Demo</a> |
+    <a href="#!/service">Service Demo</a>
   </nav>
+  
   
   <!-- This is where our views will be injected -->
   <div ng-view></div>

@@ -1,4 +1,4 @@
-angular.module('featurePlayground', ['ngRoute', 'bindingDemoModule', 'routingDemoModule', 'directiveDemoModule'])
+angular.module('featurePlayground', ['ngRoute', 'bindingDemoModule', 'routingDemoModule', 'directiveDemoModule', 'directiveDemoModule'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
@@ -15,6 +15,10 @@ angular.module('featurePlayground', ['ngRoute', 'bindingDemoModule', 'routingDem
     .when('/directive', {
       templateUrl: 'templates/directive-demo.html',
       controller: 'DirectiveDemoController'
+    })
+    .when('/service', {
+      templateUrl: 'templates/service-demo.html',
+      controller: 'ServiceDemoController'
     })
     .otherwise({ redirectTo: '/' });
 }]);
