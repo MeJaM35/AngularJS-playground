@@ -4,7 +4,8 @@ angular.module('featurePlayground', [
     'routingDemoModule', 
     'directiveDemoModule',
     'serviceDemoModule',
-    'httpDemoModule'
+    'httpDemoModule',
+    'filterDemoModule'
   ])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -30,6 +31,10 @@ angular.module('featurePlayground', [
       .when('/http', {
         templateUrl: 'templates/http-demo.html',
         controller: 'HttpDemoController'
+      })
+      .when('/filter', {
+        templateUrl: 'templates/filter-demo.html',
+        controller: 'FilterDemoController'
       })
       .otherwise({ redirectTo: '/' });
   }]);
