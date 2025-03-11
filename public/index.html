@@ -3,24 +3,20 @@
 <head>
   <meta charset="utf-8">
   <title>AngularJS Feature Playground</title>
-  <!-- Include AngularJS from a CDN -->
+  <!-- Angular Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <!-- Include AngularJS Route module for navigation -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
-  <!-- Main App Script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <!-- Feature Modules: load these before the main app script -->
+  <script src="modules/bindingDemo.js"></script>
+  <script src="modules/routingDemo.js"></script>
+  <script src="modules/directiveDemo.js"></script>
+  <script src="modules/serviceDemo.js"></script>
+  <script src="modules/httpDemo.js"></script>
+  <script src="modules/filterDemo.js"></script>
+  <script src="modules/animationDemo.js"></script>
+  <!-- Then load the main app script -->
   <script src="app.js"></script>
-  <!-- Feature Modules -->
-<!-- Feature Modules: load these first -->
-<script src="modules/bindingDemo.js"></script>
-<script src="modules/routingDemo.js"></script>
-<script src="modules/directiveDemo.js"></script>
-<script src="modules/serviceDemo.js"></script>
-<script src="modules/httpDemo.js"></script>
-<script src="modules/filterDemo.js"></script>
-<!-- Then load the main app script -->
-<script src="app.js"></script>
-
-
 </head>
 <body>
   <h1>AngularJS Feature Playground</h1>
@@ -31,12 +27,9 @@
     <a href="#!/directive">Directive Demo</a> |
     <a href="#!/service">Service Demo</a> |
     <a href="#!/http">HTTP Demo</a> |
-    <a href="#!/filter">Filter Demo</a>
+    <a href="#!/filter">Filter Demo</a> |
+    <a href="#!/animation">Animation Demo</a>
   </nav>
-  
-  
-  
-  <!-- This is where our views will be injected -->
   <div ng-view></div>
 </body>
 </html>

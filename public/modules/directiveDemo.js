@@ -1,7 +1,7 @@
 angular.module('directiveDemoModule', [])
 .directive('highlightText', function() {
   return {
-    restrict: 'A', // Use as an attribute
+    restrict: 'A', // Attribute usage
     link: function(scope, element, attrs) {
       element.on('mouseenter', function() {
         element.css('background-color', attrs.highlightText || 'yellow');
@@ -10,7 +10,7 @@ angular.module('directiveDemoModule', [])
         element.css('background-color', 'transparent');
       });
     }
-  };
+  }
 })
 .controller('DirectiveDemoController', ['$scope', function($scope) {
   console.log("DirectiveDemoController loaded");

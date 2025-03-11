@@ -1,0 +1,28 @@
+<!-- public/templates/animation-demo.html -->
+<div>
+    <h2>Animation Demo</h2>
+    <button ng-click="toggleVisibility()">Toggle Animation</button>
+    <div class="fade" ng-if="isVisible">
+      <p>This content fades in and out!</p>
+    </div>
+  </div>
+  
+
+    <style>
+      /* Fade-in animation for elements entering the DOM */
+      .fade.ng-enter {
+        transition: 0.5s linear all;
+        opacity: 0;
+      }
+      .fade.ng-enter-active {
+        opacity: 1;
+      }
+      /* Fade-out animation for elements leaving the DOM */
+      .fade.ng-leave {
+        transition: 0.5s linear all;
+        opacity: 1;
+      }
+      .fade.ng-leave-active {
+        opacity: 0;
+      }
+      </style>
