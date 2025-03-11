@@ -38,4 +38,10 @@ angular.module('bindingDemoModule', [])
 .controller('BindingDemoController', ['$scope', function($scope) {
   console.log("BindingDemoController loaded");
   $scope.message = "Hello, AngularJS!";
+  $scope.snippetCode = 
+`angular.module('bindingDemoModule', [])
+.controller('BindingDemoController', ['$scope', function($scope) {
+  $scope.message = "Hello, AngularJS!";
+}]);`;
 }]);
+

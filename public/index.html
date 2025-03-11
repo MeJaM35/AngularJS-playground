@@ -3,11 +3,20 @@
 <head>
   <meta charset="utf-8">
   <title>AngularJS Feature Playground</title>
-  <!-- Angular Libraries -->
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+  
+  <!-- AngularJS Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
-  <!-- Feature Modules: load these before the main app script -->
+  <!-- CodeMirror JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+  
+  <!-- Feature Modules: load these first -->
   <script src="modules/bindingDemo.js"></script>
   <script src="modules/routingDemo.js"></script>
   <script src="modules/directiveDemo.js"></script>
@@ -15,21 +24,35 @@
   <script src="modules/httpDemo.js"></script>
   <script src="modules/filterDemo.js"></script>
   <script src="modules/animationDemo.js"></script>
-  <!-- Then load the main app script -->
+  <script src="modules/codemirrorEditor.js"></script>
+  
+  <!-- Then load the main app script once -->
   <script src="app.js"></script>
+  
+  <style>
+    /* Ensure CodeMirror editor auto-expands */
+    .CodeMirror { height: auto; }
+  </style>
 </head>
-<body>
-  <h1>AngularJS Feature Playground</h1>
-  <nav>
-    <a href="#!/">Home</a> |
-    <a href="#!/binding">Two-Way Binding Demo</a> |
-    <a href="#!/routing">Routing Demo</a> |
-    <a href="#!/directive">Directive Demo</a> |
-    <a href="#!/service">Service Demo</a> |
-    <a href="#!/http">HTTP Demo</a> |
-    <a href="#!/filter">Filter Demo</a> |
-    <a href="#!/animation">Animation Demo</a>
-  </nav>
-  <div ng-view></div>
+<body class="bg-gray-50">
+  <header class="bg-blue-600 text-white p-4">
+    <h1 class="text-3xl font-bold">AngularJS Feature Playground</h1>
+    <nav class="mt-2">
+      <a href="#!/" class="mr-2 hover:underline">Home</a>
+      <a href="#!/binding" class="mr-2 hover:underline">Binding</a>
+      <a href="#!/routing" class="mr-2 hover:underline">Routing</a>
+      <a href="#!/directive" class="mr-2 hover:underline">Directive</a>
+      <a href="#!/service" class="mr-2 hover:underline">Service</a>
+      <a href="#!/http" class="mr-2 hover:underline">HTTP</a>
+      <a href="#!/filter" class="mr-2 hover:underline">Filter</a>
+      <a href="#!/animation" class="mr-2 hover:underline">Animation</a>
+    </nav>
+  </header>
+  <main class="p-4">
+    <div ng-view></div>
+  </main>
+  <footer class="bg-gray-200 text-center p-2 text-sm">
+    AngularJS Feature Playground &copy; 2025
+  </footer>
 </body>
 </html>
