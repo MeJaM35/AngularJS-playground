@@ -12,6 +12,15 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+// server.js
+// API endpoint to return a list of items
+app.get('/api/items', (req, res) => {
+    res.json({
+      items: ['AngularJS', 'Express', 'MongoDB', 'Node.js']
+    });
+  });
+  
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

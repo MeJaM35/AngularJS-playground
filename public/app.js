@@ -3,7 +3,8 @@ angular.module('featurePlayground', [
     'bindingDemoModule', 
     'routingDemoModule', 
     'directiveDemoModule',
-    'serviceDemoModule'
+    'serviceDemoModule',
+    'httpDemoModule'
   ])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -25,6 +26,10 @@ angular.module('featurePlayground', [
       .when('/service', {
         templateUrl: 'templates/service-demo.html',
         controller: 'ServiceDemoController'
+      })
+      .when('/http', {
+        templateUrl: 'templates/http-demo.html',
+        controller: 'HttpDemoController'
       })
       .otherwise({ redirectTo: '/' });
   }]);
