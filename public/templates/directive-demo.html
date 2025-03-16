@@ -2,35 +2,16 @@
 <div class="container mx-auto p-4">
   <h2 class="text-2xl font-bold mb-4">Custom Directive Demo</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <!-- Code Snippet Panel -->
+    <!-- Code Snippet Panel with CodeMirror -->
     <div class="bg-gray-100 p-4 rounded shadow">
-      <h3 class="text-xl font-semibold mb-2">Code Snippet</h3>
-      <pre class="text-sm overflow-x-auto">
-angular.module('directiveDemoModule', [])
-.directive('highlightText', function() {
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs) {
-      element.on('mouseenter', function() {
-        element.css('background-color', attrs.highlightText || 'yellow');
-      });
-      element.on('mouseleave', function() {
-        element.css('background-color', 'transparent');
-      });
-    }
-  };
-})
-.controller('DirectiveDemoController', ['$scope', function($scope) {
-  $scope.demoText = "Hover over this text to see the custom directive in action!";
-}]);
-      </pre>
+      <h3 class="text-xl font-semibold mb-2">Code Snippet (Editable)</h3>
+      <textarea code-mirror-editor code-content="snippetCode" class="w-full h-64"></textarea>
+      <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded" ng-click="updateIframe()">Run Code</button>
     </div>
-    <!-- Demo Panel -->
+    <!-- Live Demo Panel -->
     <div class="bg-white p-4 rounded shadow border">
       <h3 class="text-xl font-semibold mb-2">Live Demo</h3>
-      <p highlight-text="lightblue" class="p-2 border rounded">
-        {{ demoText }}
-      </p>
+      <iframe id="liveDemoIframe" class="w-full h-64 border"></iframe>
     </div>
   </div>
 </div>
