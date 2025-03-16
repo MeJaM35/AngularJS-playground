@@ -1,4 +1,16 @@
-angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule', 'routingDemoModule', 'directiveDemoModule', 'httpDemoModule', 'filterDemoModule', 'animationDemoModule', 'templateDemoModule'])
+angular.module('featurePlayground', [
+  'ngRoute', 
+  'ngAnimate', 
+  'bindingDemoModule', 
+  'routingDemoModule', 
+  'directiveDemoModule', 
+  'serviceDemoModule', 
+  'httpDemoModule', 
+  'filterDemoModule', 
+  'animationDemoModule', 
+  'templateDemoModule', 
+  'factoryDemoModule' // Add the factoryDemoModule here
+])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
@@ -36,6 +48,10 @@ angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule'
       templateUrl: 'templates/template-demo.html',
       controller: 'TemplateDemoController'
     })
+    .when('/factory', {
+      templateUrl: 'templates/factory-demo.html',
+      controller: 'FactoryDemoController'
+    })
     .otherwise({ redirectTo: '/' });
 }]);
 
@@ -68,6 +84,15 @@ angular.module('bindingDemoModule', [])
     iframeDoc.open();
     iframeDoc.write($scope.snippetCode);
     iframeDoc.close();
+
+    // Delay the AngularJS bootstrap to ensure the body is available
+    setTimeout(function() {
+      // Manually bootstrap AngularJS within the iframe
+      var script = iframeDoc.createElement('script');
+      script.type = 'text/javascript';
+      script.innerHTML = "angular.bootstrap(iframeDoc.documentElement, ['bindingDemoApp']);";
+      iframeDoc.body.appendChild(script);
+    }, 100); // Increased delay to ensure body is available
   };
 }]);
 

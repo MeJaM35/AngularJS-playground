@@ -26,6 +26,7 @@
   <script src="modules/animationDemo.js"></script>
   <script src="modules/codemirrorEditor.js"></script>
   <script src="modules/templateDemo.js"></script>
+  <script src="modules/factoryDemo.js"></script>
   
   <!-- Then load the main app script once -->
   <script src="app.js"></script>
@@ -36,23 +37,20 @@
   </style>
 </head>
 <body class="bg-gray-50">
-  <header class="bg-blue-600 text-white p-4">
-    <h1 class="text-3xl font-bold">AngularJS Feature Playground</h1>
-    <nav class="mt-2">
-      <a href="#!/" class="mr-2 hover:underline">Home</a>
-      <a href="#!/binding" class="mr-2 hover:underline">Binding</a>
-      <a href="#!/routing" class="mr-2 hover:underline">Routing</a>
-      <a href="#!/directive" class="mr-2 hover:underline">Directive</a>
-      <a href="#!/service" class="mr-2 hover:underline">Service</a>
-      <a href="#!/http" class="mr-2 hover:underline">HTTP</a>
-      <a href="#!/filter" class="mr-2 hover:underline">Filter</a>
-      <a href="#!/animation" class="mr-2 hover:underline">Animation</a>
-      <a href="#!/template" class="mr-2 hover:underline">Template</a>
-    </nav>
-  </header>
-  <main class="p-4">
-    <div ng-view></div>
-  </main>
+  <nav class="bg-gray-800 p-4">
+    <ul class="flex space-x-4">
+      <li><a href="#!/binding" class="text-white">Binding Demo</a></li>
+      <li><a href="#!/routing" class="text-white">Routing Demo</a></li>
+      <li><a href="#!/directive" class="text-white">Directive Demo</a></li>
+      <li><a href="#!/service" class="text-white">Service Demo</a></li>
+      <li><a href="#!/http" class="text-white">HTTP Demo</a></li>
+      <li><a href="#!/filter" class="text-white">Filter Demo</a></li>
+      <li><a href="#!/animation" class="text-white">Animation Demo</a></li>
+      <li><a href="#!/template" class="text-white">Template Demo</a></li>
+      <li><a href="#!/factory" class="text-white">Factory Demo</a></li>
+    </ul>
+  </nav>
+  <div ng-view class="p-4"></div>
   <footer class="bg-gray-200 text-center p-2 text-sm">
     AngularJS Feature Playground &copy; 2025
   </footer>
