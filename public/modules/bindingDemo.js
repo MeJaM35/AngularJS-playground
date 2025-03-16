@@ -1,4 +1,4 @@
-angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule', 'routingDemoModule', 'directiveDemoModule', 'directiveDemoModule', 'httpDemoModule', 'filterDemoModule', 'animationDemoModule'])
+angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule', 'routingDemoModule', 'directiveDemoModule', 'httpDemoModule', 'filterDemoModule', 'animationDemoModule'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
@@ -34,14 +34,36 @@ angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule'
     })
     .otherwise({ redirectTo: '/' });
 }]);
+
 angular.module('bindingDemoModule', [])
 .controller('BindingDemoController', ['$scope', function($scope) {
   console.log("BindingDemoController loaded");
   $scope.message = "Hello, AngularJS!";
   $scope.snippetCode = 
-`angular.module('bindingDemoModule', [])
-.controller('BindingDemoController', ['$scope', function($scope) {
-  $scope.message = "Hello, AngularJS!";
-}]);`;
+`<!DOCTYPE html>
+<html ng-app="bindingDemoApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    angular.module('bindingDemoApp', [])
+    .controller('DemoController', ['$scope', function($scope) {
+      $scope.message = "Hello, AngularJS!";
+    }]);
+  </script>
+</head>
+<body ng-controller="DemoController">
+  <p>Type a message:</p>
+  <input type="text" ng-model="message" placeholder="Enter your message">
+  <p>Your message: <span>{{ message }}</span></p>
+</body>
+</html>`;
+
+  $scope.updateIframe = function() {
+    var iframe = document.getElementById('liveDemoIframe');
+    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDoc.open();
+    iframeDoc.write($scope.snippetCode);
+    iframeDoc.close();
+  };
 }]);
 

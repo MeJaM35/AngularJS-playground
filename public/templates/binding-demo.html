@@ -6,13 +6,12 @@
     <div class="bg-gray-100 p-4 rounded shadow">
       <h3 class="text-xl font-semibold mb-2">Code Snippet (Editable)</h3>
       <textarea code-mirror-editor code-content="snippetCode" class="w-full h-64"></textarea>
+      <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded" ng-click="updateIframe()">Run Code</button>
     </div>
     <!-- Live Demo Panel -->
     <div class="bg-white p-4 rounded shadow border">
       <h3 class="text-xl font-semibold mb-2">Live Demo</h3>
-      <p class="mb-2">Type a message:</p>
-      <input type="text" ng-model="message" class="border p-1 rounded w-full mb-2" placeholder="Enter your message">
-      <p>Your message: <span class="font-medium">{{ message }}</span></p>
+      <iframe id="liveDemoIframe" class="w-full h-64 border"></iframe>
     </div>
   </div>
 </div>
