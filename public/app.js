@@ -8,7 +8,8 @@ angular.module('featurePlayground', [
   'httpDemoModule',
   'filterDemoModule',
   'animationDemoModule',
-  'codeMirrorModule'
+  'codeMirrorModule',
+  'templateDemoModule' // Add the templateDemoModule here
 ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -42,6 +43,10 @@ angular.module('featurePlayground', [
     .when('/animation', {
       templateUrl: 'templates/animation-demo.html',
       controller: 'AnimationDemoController'
+    })
+    .when('/template', {
+      templateUrl: 'templates/template-demo.html',
+      controller: 'TemplateDemoController'
     })
     .otherwise({ redirectTo: '/' });
 }]);

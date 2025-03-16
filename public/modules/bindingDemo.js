@@ -1,4 +1,4 @@
-angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule', 'routingDemoModule', 'directiveDemoModule', 'httpDemoModule', 'filterDemoModule', 'animationDemoModule'])
+angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule', 'routingDemoModule', 'directiveDemoModule', 'httpDemoModule', 'filterDemoModule', 'animationDemoModule', 'templateDemoModule'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
@@ -31,6 +31,10 @@ angular.module('featurePlayground', ['ngRoute', 'ngAnimate', 'bindingDemoModule'
     .when('/animation', {
       templateUrl: 'templates/animation-demo.html',
       controller: 'AnimationDemoController'
+    })
+    .when('/template', {
+      templateUrl: 'templates/template-demo.html',
+      controller: 'TemplateDemoController'
     })
     .otherwise({ redirectTo: '/' });
 }]);
