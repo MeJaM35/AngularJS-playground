@@ -74,6 +74,8 @@ angular.module('featurePlayground', [
   'codeMirrorModule',
   'templateDemoModule',
   'factoryDemoModule',
+  'scopeDemoModule',
+  'controllerDemoModule',
   'themeModule' // Add our new theme module
 ])
 .config(['$routeProvider', function($routeProvider) {
@@ -117,6 +119,15 @@ angular.module('featurePlayground', [
       templateUrl: 'templates/factory-demo.html',
       controller: 'FactoryDemoController'
     })
+    .when('/scope', {
+      templateUrl: 'templates/scope-demo.html',
+      controller: 'ScopeDemoController'
+    })
+    .when('/controller', {
+      templateUrl: 'templates/controller-demo.html',
+      controller: 'ControllerDemoController'
+    })
+
     .otherwise({ redirectTo: '/' });
 }])
 .controller('MainController', ['$scope', 'ThemeService', function($scope, ThemeService) {
