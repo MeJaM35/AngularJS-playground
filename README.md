@@ -82,12 +82,6 @@ Each feature is implemented as a separate module with its own demo. Below is a l
 
 ---
 
-## Dark Mode Support
-
-This project includes a **dark mode** toggle for a modern user experience. The theme preference is saved in `localStorage` and adapts to the user's system settings.
-
----
-
 ## Technologies Used
 
 - **Frontend**:
