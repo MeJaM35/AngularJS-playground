@@ -79,7 +79,7 @@ angular.module('featurePlayground', [
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
-      template: '<h2 class="text-2xl font-bold mb-4">Welcome to the Feature Playground!</h2><p>Select a demo from the navigation above.</p>'
+      templateUrl: 'templates/landingPage.html'
     })
     .when('/binding', {
       templateUrl: 'templates/binding-demo.html',
