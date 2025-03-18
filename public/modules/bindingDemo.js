@@ -9,7 +9,8 @@ angular.module('featurePlayground', [
   'filterDemoModule', 
   'animationDemoModule', 
   'templateDemoModule', 
-  'factoryDemoModule' // Add the factoryDemoModule here
+  'factoryDemoModule', 
+  'themeModule' // Add the themeModule here
 ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -56,7 +57,7 @@ angular.module('featurePlayground', [
 }]);
 
 angular.module('bindingDemoModule', [])
-.controller('BindingDemoController', ['$scope', function($scope) {
+.controller('BindingDemoController', ['$scope', 'ThemeService', function($scope, ThemeService) {
   console.log("BindingDemoController loaded");
   $scope.message = "Hello, AngularJS!";
   $scope.snippetCode = 
@@ -94,5 +95,17 @@ angular.module('bindingDemoModule', [])
       iframeDoc.body.appendChild(script);
     }, 100); // Increased delay to ensure body is available
   };
+
+  // Theme toggle functionality
+  $scope.isDarkMode = ThemeService.isDarkMode;
+
+  $scope.toggleTheme = function() {
+    ThemeService.toggleTheme();
+    $scope.isDarkMode = ThemeService.isDarkMode;
+  };
+
+  $scope.$on('themeChanged', function(event, isDarkMode) {
+    $scope.isDarkMode = isDarkMode;
+  });
 }]);
 
