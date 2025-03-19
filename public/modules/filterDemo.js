@@ -32,14 +32,37 @@ angular.module('filterDemoModule', [])
   $scope.updateIframe = function() {
     var iframe = document.getElementById('liveDemoIframe');
     var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // Clear the iframe content and write the new snippet
     iframeDoc.open();
     iframeDoc.write($scope.snippetCode);
     iframeDoc.close();
 
-    // Manually bootstrap AngularJS within the iframe
-    var script = iframeDoc.createElement('script');
-    script.type = 'text/javascript';
-    script.innerHTML = "angular.bootstrap(document, ['filterDemoApp']);";
-    iframeDoc.body.appendChild(script);
+    // Delay to ensure the iframe's DOM is fully loaded
+    setTimeout(function() {
+      try {
+        // Check if AngularJS is already bootstrapped in the iframe
+        if (iframeDoc.defaultView.angular) {
+          // Manually destroy the existing AngularJS app in the iframe
+          var appElement = iframeDoc.querySelector('[ng-app]');
+          if (appElement) {
+            var appScope = iframeDoc.defaultView.angular.element(appElement).scope();
+            if (appScope) {
+              appScope.$destroy();
+            }
+          }
+        }
+
+        // Re-bootstrap AngularJS within the iframe
+        var appElement = iframeDoc.querySelector('[ng-app]');
+        if (appElement) {
+          iframeDoc.defaultView.angular.bootstrap(appElement, ['filterDemoApp']);
+        } else {
+          console.error("No 'ng-app' element found in the iframe.");
+        }
+      } catch (error) {
+        console.error("Error during iframe AngularJS initialization:", error);
+      }
+    }, 200); // Increased delay to ensure the iframe's body is available
   };
 }]);

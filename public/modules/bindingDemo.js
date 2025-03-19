@@ -82,18 +82,32 @@ angular.module('bindingDemoModule', [])
   $scope.updateIframe = function() {
     var iframe = document.getElementById('liveDemoIframe');
     var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // Clear the iframe content and write the new snippet
     iframeDoc.open();
     iframeDoc.write($scope.snippetCode);
     iframeDoc.close();
 
     // Delay the AngularJS bootstrap to ensure the body is available
     setTimeout(function() {
-      // Manually bootstrap AngularJS within the iframe
-      var script = iframeDoc.createElement('script');
-      script.type = 'text/javascript';
-      script.innerHTML = "angular.bootstrap(iframeDoc.documentElement, ['bindingDemoApp']);";
-      iframeDoc.body.appendChild(script);
-    }, 100); // Increased delay to ensure body is available
+      // Check if AngularJS is already bootstrapped in the iframe
+      if (iframeDoc.defaultView.angular) {
+        // Manually destroy the existing AngularJS app in the iframe
+        var appElement = iframeDoc.querySelector('[ng-app]');
+        if (appElement) {
+          var appScope = iframeDoc.defaultView.angular.element(appElement).scope();
+          if (appScope) {
+            appScope.$destroy();
+          }
+        }
+      }
+
+      // Re-bootstrap AngularJS within the iframe
+      var appElement = iframeDoc.querySelector('[ng-app]');
+      if (appElement) {
+        iframeDoc.defaultView.angular.bootstrap(appElement, ['bindingDemoApp']);
+      }
+    }, 100); // Delay to ensure the iframe's body is available
   };
 
   // Theme toggle functionality
