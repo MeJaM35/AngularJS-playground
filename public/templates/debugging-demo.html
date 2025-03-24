@@ -1,0 +1,61 @@
+<div class="container mx-auto p-4">
+  <!-- Introduction Section -->
+  <h2 class="text-2xl font-bold mb-4 dark:text-white">Debugging Demo</h2>
+  <p class="mb-4 dark:text-gray-300">
+    This demo introduces common AngularJS debugging scenarios. Use the ng-inspect extension 
+    to find and fix the following issues in the live demo below:
+    <ul class="list-disc ml-6 mt-2">
+      <li>Variable name case mismatch</li>
+      <li>Undefined variables</li>
+      <li>ng-repeat scope issues</li>
+    </ul>
+  </p>
+  <!-- Live Demo with Bugs -->
+  <div class="grid grid-cols-1 gap-4">
+    <div class="bg-white dark:bg-gray-700 p-6 rounded shadow border dark:border-gray-600">
+      <h3 class="text-xl font-semibold mb-4 dark:text-white">Live Demo (With Bugs)</h3>
+      
+      <!-- User Details Section -->
+      <div class="mb-6">
+        <h4 class="font-medium mb-2 dark:text-gray-200">User Details:</h4>
+        <p class="dark:text-gray-300">Welcome, {{ userNaMe }}!</p> <!-- Intentional case mismatch -->
+        <p class="dark:text-gray-300">Status: {{ userStatus }}</p> <!-- Undefined variable -->
+      </div>
+
+      <!-- Items List Section -->
+      <div class="mb-6">
+        <h4 class="font-medium mb-2 dark:text-gray-200">Items:</h4>
+        <ul class="list-disc ml-6 dark:text-gray-300">
+          <li ng-repeat="itm in items">{{ item }}</li> <!-- Scope variable mismatch -->
+        </ul>
+      </div>
+
+      <!-- Form with Validation -->
+      <div class="mb-6">
+        <h4 class="font-medium mb-2 dark:text-gray-200">Update Profile:</h4>
+        <form name="userForm">
+          <input type="text" 
+                 ng-model="newUserName" 
+                 placeholder="Enter new username"
+                 class="border p-2 rounded mb-2 dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+          <button ng-click="updateUser(newusername)" 
+                  class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Debugging Tips -->
+  <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <h3 class="text-xl font-semibold mb-4 dark:text-white">💡 Debugging Tips:</h3>
+    <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+      <li>Install the AngularJS DevTools extension</li>
+      <li>Open Chrome DevTools (F12) and look for the AngularJS panel</li>
+      <li>Use ng-inspect to examine scope variables</li>
+      <li>Check the console for JavaScript errors</li>
+      <li>Look for case-sensitive variable names</li>
+    </ul>
+  </div>
+</div>
