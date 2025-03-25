@@ -10,8 +10,6 @@ angular.module('featurePlayground', [
   'animationDemoModule', 
   'templateDemoModule', 
   'factoryDemoModule', 
-  'debuggingDemoModule', // Add the new module
-
   'themeModule' // Add the themeModule here
 ])
 .config(['$routeProvider', function($routeProvider) {
@@ -54,10 +52,6 @@ angular.module('featurePlayground', [
     .when('/factory', {
       templateUrl: 'templates/factory-demo.html',
       controller: 'FactoryDemoController'
-    })
-    .when('/debugging', {
-      templateUrl: 'templates/debugging-demo.html',
-      controller: 'DebuggingDemoController'
     })
     
     .otherwise({ redirectTo: '/' });
