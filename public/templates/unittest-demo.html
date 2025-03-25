@@ -1,0 +1,17 @@
+<!-- public/templates/unittest-demo.html -->
+<div class="container mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Unit Test Framework Demo</h2>
+    <p>Demonstrates AngularJS unit testing logic with Karma/Jasmine.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-gray-100 p-4 rounded shadow">
+            <h3 class="text-xl font-semibold mb-2">Code Snippet (Editable)</h3>
+            <textarea code-mirror-editor code-content="snippetCode" class="w-full h-64"></textarea>
+            <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded" ng-click="updateIframe()">Run Code</button>
+        </div>
+        <div class="bg-white p-4 rounded shadow border">
+            <h3 class="text-xl font-semibold mb-2">Live Demo</h3>
+            <iframe id="liveDemoIframe" class="w-full h-64 border"></iframe>
+        </div>
+    </div>
+</div>
