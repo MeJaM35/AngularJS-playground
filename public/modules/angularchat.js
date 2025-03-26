@@ -25,7 +25,7 @@ angular.module('chatModule', ['ngSanitize'])
         const API_URL = 'https://rag-rag.apps.openshift-dsw.enye.p2.openshiftapps.com/chat/chat';
         
         const data = {
-            user_message: $scope.userMessage,
+            user_message: "#SYSTEM: You are an AI model who helps other users to learn Angular and Angular JS. Dont tolerate other things.\n\n" + $scope.userMessage,
             connection_uri: 'None' // Always set to None as per requirement
         };
 
