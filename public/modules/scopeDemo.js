@@ -12,7 +12,7 @@ angular.module('scopeDemoModule', [])
     angular.module('scopeDemoApp', [])
     .controller('ScopeDemoController', ['$scope', function($scope) {
       // Controller scope variable
-      $scope.greeting = "Hello, World!";
+      $scope.greeting = "Hello, Edgeverve Team!";
     }]);
   </script>
 </head>
