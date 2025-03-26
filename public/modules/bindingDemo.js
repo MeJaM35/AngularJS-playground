@@ -60,7 +60,7 @@ angular.module('featurePlayground', [
 angular.module('bindingDemoModule', [])
 .controller('BindingDemoController', ['$scope', 'ThemeService', function($scope, ThemeService) {
   console.log("BindingDemoController loaded");
-  $scope.message = "Hello, AngularJS!";
+  $scope.message = "Let's Learn Angular.js";
   $scope.snippetCode = 
 `<!DOCTYPE html>
 <html ng-app="bindingDemoApp">
