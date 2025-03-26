@@ -69,7 +69,7 @@ angular.module('bindingDemoModule', [])
   <script>
     angular.module('bindingDemoApp', [])
     .controller('DemoController', ['$scope', function($scope) {
-      $scope.message = "Hello, AngularJS!";
+      $scope.message = "Let's Learn Angular.js";
     }]);
   </script>
 </head>
