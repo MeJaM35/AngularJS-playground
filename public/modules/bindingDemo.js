@@ -53,6 +53,7 @@ angular.module('featurePlayground', [
       templateUrl: 'templates/factory-demo.html',
       controller: 'FactoryDemoController'
     })
+    
     .otherwise({ redirectTo: '/' });
 }]);
 
