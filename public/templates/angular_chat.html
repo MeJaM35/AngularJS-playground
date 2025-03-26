@@ -1,0 +1,211 @@
+<div class="chat-container fade-in p-4 md:p-8 max-w-5xl mx-auto">
+    <!-- Chat Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-6 rounded-t-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-2">AngularJS AI Assistant</h2>
+        <p class="text-sm opacity-90">Ask me anything about AngularJS!</p>
+    </div>
+
+    <!-- Chat Messages Area -->
+    <div class="bg-white dark:bg-gray-800 h-[60vh] overflow-y-auto p-4 border-x border-gray-200 dark:border-gray-700 shadow-inner">
+        <div class="space-y-4">
+            <!-- Welcome Message -->
+            <div class="flex items-start space-x-4" ng-if="chatHistory.length === 0">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                    <span class="text-white text-sm">AI</span>
+                </div>
+                <div class="flex-grow">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow">
+                        <p class="text-gray-800 dark:text-gray-200">
+                            Hello! I'm your AngularJS assistant. I can help you with:
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li>Understanding AngularJS concepts</li>
+                                <li>Code examples and explanations</li>
+                                <li>Best practices and debugging tips</li>
+                                <li>Learning resources and documentation</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div ng-repeat="message in chatHistory" class="flex items-start space-x-4">
+                <!-- User Message -->
+                <div class="flex flex-col space-y-4 w-full">
+                    <div class="flex items-start space-x-4 justify-end">
+                        <div class="bg-blue-600 text-white p-4 rounded-lg shadow max-w-[80%]">
+                            <p>{{message.user_message}}</p>
+                        </div>
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
+                            <span class="text-gray-600 dark:text-gray-300 text-sm">You</span>
+                        </div>
+                    </div>
+
+                    <!-- AI Response -->
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                            <span class="text-white text-sm">AI</span>
+                        </div>
+                        <div class="prose dark:prose-invert max-w-none markdown-content" 
+                             ng-bind-html="trustAsHtml(message.gemini_response | markdown)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="flex items-center space-x-4" ng-if="isLoading">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                    <span class="text-white text-sm">AI</span>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow">
+                    <div class="flex items-center space-x-2">
+                        <div class="animate-bounce h-2 w-2 bg-blue-600 rounded-full"></div>
+                        <div class="animate-bounce h-2 w-2 bg-blue-600 rounded-full" style="animation-delay: 0.2s"></div>
+                        <div class="animate-bounce h-2 w-2 bg-blue-600 rounded-full" style="animation-delay: 0.4s"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-b-lg p-4 shadow-lg">
+        <form ng-submit="sendMessage()" class="flex space-x-4">
+            <input 
+                type="text" 
+                ng-model="userMessage" 
+                placeholder="Ask about AngularJS..." 
+                class="flex-grow px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white"
+                ng-disabled="isLoading"
+            >
+            <button 
+                type="submit" 
+                class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow flex items-center space-x-2 disabled:opacity-50"
+                ng-disabled="isLoading || !userMessage.trim()"
+            >
+                <span ng-if="!isLoading">Send</span>
+                <span ng-if="isLoading">Sending...</span>
+                <svg ng-if="!isLoading" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Rate Limit Notice -->
+    <div class="text-center mt-4">
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+            Note: There is a rate limit of 60 API calls per hour.
+        </p>
+    </div>
+</div>
+
+<style>
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Scrollbar */
+.chat-container div::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-container div::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-container div::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 20px;
+}
+
+.dark .chat-container div::-webkit-scrollbar-thumb {
+    background-color: rgba(75, 85, 99, 0.5);
+}
+
+.markdown-content {
+    line-height: 1.6;
+    color: #1f2937; /* gray-800 for light mode */
+}
+
+.dark .markdown-content {
+    color: #e5e7eb; /* gray-200 for dark mode */
+}
+
+.markdown-content code {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+    color: #4b5563; /* gray-600 for light mode */
+}
+
+.dark .markdown-content code {
+    background: rgba(255, 255, 255, 0.1);
+    color: #9ca3af; /* gray-400 for dark mode */
+}
+
+.markdown-content pre {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 1em;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+.dark .markdown-content pre {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.markdown-content a {
+    color: #3b82f6; /* blue-500 */
+    text-decoration: underline;
+}
+
+.dark .markdown-content a {
+    color: #60a5fa; /* blue-400 */
+}
+
+.markdown-content ul {
+    list-style-type: disc;
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+    color: inherit;
+}
+
+.markdown-content li {
+    margin: 0.5em 0;
+}
+
+.markdown-content p {
+    margin-bottom: 1em;
+    color: inherit;
+}
+
+.markdown-content strong {
+    color: inherit;
+    font-weight: 600;
+}
+
+.markdown-content em {
+    color: inherit;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1em;
+    margin: 1em 0;
+    color: #6b7280; /* gray-500 */
+}
+
+.dark .markdown-content blockquote {
+    border-left-color: #4b5563; /* gray-600 */
+    color: #9ca3af; /* gray-400 */
+}
+</style>

@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "angular": "^1.8.3",
+    "angular": "^1.6.10",
     "express": "^4.21.2"
   },
   "devDependencies": {

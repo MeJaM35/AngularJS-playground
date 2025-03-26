@@ -79,7 +79,10 @@ angular.module('featurePlayground', [
   'themeModule', 
   'debuggerDemoModule',
   'unittestDemoModule',
-  'debugInfoDemoModule'
+  'debugInfoDemoModule',
+  'loginModule',
+  'registerModule',
+  'chatModule'
 ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -142,7 +145,21 @@ angular.module('featurePlayground', [
       templateUrl: 'templates/debuginfo-demo.html',
       controller: 'DebugInfoDemoController'
     })
-
+    .when('/angularchat/home', {
+      templateUrl: 'templates/angular_chat_home.html',
+    })
+    .when('/angularchat/login', {
+      templateUrl: 'templates/angular_chat_login.html',
+      controller: 'LoginController'  
+    })
+    .when('/angularchat/register', {
+      templateUrl: 'templates/angular_chat_register.html',
+      controller: 'RegisterController'
+    })
+    .when('/angularchat/chat', {
+      templateUrl: 'templates/angular_chat.html',
+      controller: 'ChatController'
+    })
     .otherwise({ redirectTo: '/' });
 }])
 .controller('MainController', ['$scope', 'ThemeService', function($scope, ThemeService) {

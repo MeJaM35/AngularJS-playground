@@ -1,0 +1,112 @@
+<div class="register-container fade-in p-8 max-w-md mx-auto">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
+        <h2 class="text-3xl font-bold text-center mb-8 text-blue-600 dark:text-blue-400">Create Account</h2>
+        
+        <form ng-submit="registerUser()" ng-controller="RegisterController" class="space-y-6">
+            <div class="form-group">
+                <label class="block text-gray-700 dark:text-gray-300 mb-2">Username</label>
+                <input 
+                    type="text" 
+                    ng-model="user.username" 
+                    required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    ng-class="{'border-red-500': errors.username}"
+                >
+                <p class="text-red-500 text-sm mt-1" ng-if="errors.username">{{errors.username}}</p>
+            </div>
+            
+            <div class="form-group">
+                <label class="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <input 
+                    type="email" 
+                    ng-model="user.email" 
+                    required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    ng-class="{'border-red-500': errors.email}"
+                >
+                <p class="text-red-500 text-sm mt-1" ng-if="errors.email">{{errors.email}}</p>
+            </div>
+            
+            <div class="form-group">
+                <label class="block text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <input 
+                    type="password" 
+                    ng-model="user.password" 
+                    required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    ng-class="{'border-red-500': errors.password}"
+                >
+                <p class="text-red-500 text-sm mt-1" ng-if="errors.password">{{errors.password}}</p>
+            </div>
+            
+            <div class="form-group">
+                <label class="block text-gray-700 dark:text-gray-300 mb-2">Confirm Password</label>
+                <input 
+                    type="password" 
+                    ng-model="user.conf_pass" 
+                    required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    ng-class="{'border-red-500': errors.conf_pass}"
+                >
+                <p class="text-red-500 text-sm mt-1" ng-if="errors.conf_pass">{{errors.conf_pass}}</p>
+            </div>
+            
+            <button 
+                type="submit" 
+                id="submit" 
+                class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-lg"
+                ng-disabled="isLoading"
+            >
+                <span ng-if="!isLoading">Register</span>
+                <span ng-if="isLoading" class="flex items-center justify-center">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Registering...
+                </span>
+            </button>
+        </form>
+
+        <p ng-class="{'message-success': message.includes('successful'), 'message-error': message.includes('Error')}" 
+           class="mt-4 text-center transition-all duration-300">
+            {{ message }}
+        </p>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-600 dark:text-gray-400">
+                Already have an account? 
+                <a href="#!/angularchat/login" class="text-blue-600 dark:text-blue-400 hover:underline">Log in</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-success {
+    @apply text-green-600 dark:text-green-400 font-medium;
+}
+
+.message-error {
+    @apply text-red-600 dark:text-red-400 font-medium;
+}
+
+.form-group input:focus {
+    outline: none;
+}
+
+.register-container {
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    align-items: center;
+}
+</style>
