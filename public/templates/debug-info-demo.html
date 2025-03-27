@@ -14,18 +14,16 @@
             <iframe id="liveDemoIframe" class="w-full h-64 border"></iframe>
         </div>
     </div>
+</div>
 
-    <div class="debug-info">
-        <h3>Debug Output:</h3>
-        <div>Message: {{debugOutput.message}}</div>
-        <pre>Debug Info: {{debugOutput.debugInfo | json}}</pre>
-        
-        <div ng-if="debugOutput.errors.length" class="error-list">
-            <h4>Errors:</h4>
-            <div ng-repeat="error in debugOutput.errors" class="error-item">
-                <strong>{{error.message}}</strong>
-                <pre ng-if="error.stack">{{error.stack}}</pre>
-            </div>
-        </div>
-    </div>
+<div ng-controller="DebugInfoDemoController">
+  <iframe id="liveDemoIframe" style="width: 100%; height: 500px;"></iframe>
+  
+  <div class="debug-info">
+    <h3>Parent Window Debug Output:</h3>
+    <p>Message: {{debugOutput.message}}</p>
+    <pre>Debug Info: {{debugOutput.debugInfo | json}}</pre>
+  </div>
+  
+  <button ng-click="updateIframe()">Refresh Demo</button>
 </div>
